@@ -9,7 +9,7 @@ name: Python Lint
 on:
   # Trigger on every push to any branch
   push:
-  branches: [trunk, notepad]
+    branches: [trunk, notepad]
 
 
 jobs:

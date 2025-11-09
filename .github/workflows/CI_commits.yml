@@ -9,7 +9,7 @@ name: Commits Syntax Checker
 on:
   # Trigger the workflow on every push to any branch
   push:
-  branches: [trunk, notepad]
+    branches: [trunk, notepad]
 
 jobs:
   check:
