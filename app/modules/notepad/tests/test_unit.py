@@ -4,7 +4,7 @@ from app.modules.auth.models import User
 from app.modules.conftest import login, logout
 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope="module")
 def test_client(test_client):
     """
     Extends the test_client fixture to add additional specific data for module testing.
@@ -27,7 +27,9 @@ def test_sample_assertion(test_client):
     confirm that the tests in this module can be executed.
     """
     greeting = "Hello, World!"
-    assert greeting == "Hello, World!", "The greeting does not coincide with 'Hello, World!"
+    assert greeting == "Hello, World!", (
+        "The greeting does not coincide with 'Hello, World!"
+    )
 
 
 def test_list_empty_notepad_get(test_client):
@@ -39,6 +41,8 @@ def test_list_empty_notepad_get(test_client):
 
     response = test_client.get("/notepad")
     assert response.status_code == 200, "The notepad page could not be accessed."
-    assert b"You have no notepads." in response.data, "The expected content is not present on the page"
+    assert b"You have no notepads." in response.data, (
+        "The expected content is not present on the page"
+    )
 
     logout(test_client)
