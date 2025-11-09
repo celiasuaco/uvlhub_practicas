@@ -107,7 +107,6 @@ requests==2.32.4
 rosemary @ file:///home/celia/uvlhub_practicas
 rpds-py==0.26.0
 rq==2.4.1
-ruff==0.14.4
 selenium==4.34.2
 selenium-wire==5.1.0
 setuptools==80.9.0

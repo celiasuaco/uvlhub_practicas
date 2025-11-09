@@ -3,13 +3,17 @@
 # Salir inmediatamente si un comando falla
 set -e
 
-echo "--- 1. Formateando código (Black/isort) ---"
-ruff format app rosemary core
+# Tus directorios
+DIRECTORIOS="app rosemary core"
 
-echo "\n--- 2. Arreglando errores (Flake8) ---"
-ruff check app rosemary core --fix
+echo "--- 1. Ordenando imports (isort) ---"
+isort --check-only $DIRECTORIOS
 
-echo "\n--- 3. Comprobando errores restantes ---"
-ruff check app rosemary core
+echo "\n--- 2. Formateando código (black) ---"
+black --check $DIRECTORIOS
 
-echo "\n✅ ¡Formateo y linting completados!"
+echo "\n--- 3. Comprobando errores restantes (flake8) ---"
+# Flake8 se ejecuta al final para encontrar errores que black/isort no arreglan.
+flake8 $DIRECTORIOS
+
+echo "\n✅ ¡Formateo completado! (Revisa si flake8 reportó errores)"

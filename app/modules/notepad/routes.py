@@ -1,8 +1,8 @@
-from flask import render_template, redirect, url_for, flash
-from flask_login import login_required, current_user
+from flask import flash, redirect, render_template, url_for
+from flask_login import current_user, login_required
 
-from app.modules.notepad.forms import NotepadForm
 from app.modules.notepad import notepad_bp
+from app.modules.notepad.forms import NotepadForm
 from app.modules.notepad.services import NotepadService
 
 notepad_service = NotepadService()
@@ -26,9 +26,7 @@ CREATE
 def create_notepad():
     form = NotepadForm()
     if form.validate_on_submit():
-        result = notepad_service.create(
-            title=form.title.data, body=form.body.data, user_id=current_user.id
-        )
+        result = notepad_service.create(title=form.title.data, body=form.body.data, user_id=current_user.id)
         return notepad_service.handle_service_response(
             result=result,
             errors=form.errors,
@@ -72,9 +70,7 @@ def edit_notepad(notepad_id):
 
     form = NotepadForm(obj=notepad)
     if form.validate_on_submit():
-        result = notepad_service.update(
-            notepad_id, title=form.title.data, body=form.body.data
-        )
+        result = notepad_service.update(notepad_id, title=form.title.data, body=form.body.data)
         return notepad_service.handle_service_response(
             result=result,
             errors=form.errors,
